@@ -26,8 +26,6 @@ zstyle -e :urlglobber url-other-schema \
     '[[ $some_remote_commands[(i)$words[1]] -le ${#some_remote_commands} ]] && reply=("*") || reply=(http https ftp)'
 
 
-#fpath=($HOME/.dotfiles/zsh_custom/zsh-completions/src $fpath)
-
 if [ $commands[autojump] ]; then # check if autojump is installed
   if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
     . $HOME/.autojump/etc/profile.d/autojump.zsh
