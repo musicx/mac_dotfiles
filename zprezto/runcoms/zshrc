@@ -1,0 +1,93 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+HISTSIZE=65536
+SAVEHIST=65536
+
+#  Customize to your needs...
+source "$HOME/.dotfiles/zsh_custom/env.zsh"
+source "$HOME/.dotfiles/zsh_custom/alias.zsh"
+source "$HOME/.dotfiles/zsh_custom/function.zsh"
+source "$HOME/.dotfiles/zsh_custom/iterm2_shell_integratin.zsh"
+#source "$HOME/.dotfiles/zsh_custom/tmux.zsh"
+
+# solve problem of manually quoting urls
+some_remote_commands=(scp rsync)
+zstyle -e :urlglobber url-other-schema \
+    '[[ $some_remote_commands[(i)$words[1]] -le ${#some_remote_commands} ]] && reply=("*") || reply=(http https ftp)'
+
+
+#fpath=($HOME/.dotfiles/zsh_custom/zsh-completions/src $fpath)
+
+if [ $commands[autojump] ]; then # check if autojump is installed
+  if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
+    . $HOME/.autojump/etc/profile.d/autojump.zsh
+  elif [ -f /usr/share/autojump/autojump.zsh ]; then # debian and ubuntu package
+    . /usr/share/autojump/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.zsh ]; then # manual installation
+    . /etc/profile.d/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.sh ]; then # gentoo installation
+    . /etc/profile.d/autojump.sh
+  elif [ -f /usr/local/share/autojump/autojump.zsh ]; then # freebsd installation
+    . /usr/local/share/autojump/autojump.zsh
+  elif [ -f /opt/local/etc/profile.d/autojump.zsh ]; then # mac os x with ports
+    . /opt/local/etc/profile.d/autojump.zsh
+  elif [ $commands[brew] -a -f `brew --prefix`/etc/autojump.zsh ]; then # mac os x with brew
+    . `brew --prefix`/etc/autojump.zsh
+  fi
+fi
+
+# Find python file
+alias pyfind='find . -name "*.py"'
+
+# Remove python compiled byte-code in either current directory or in a
+# list of specified directories
+function pyclean() {
+    ZSH_PYCLEAN_PLACES=${*:-'.'}
+    find ${ZSH_PYCLEAN_PLACES} -type f -name "*.py[co]" -delete
+    find ${ZSH_PYCLEAN_PLACES} -type d -name "__pycache__" -delete
+}
+
+# Grep among .py files
+alias pygrep='grep --include="*.py"'
+
+# from Oh-My-Zsh pip plugin
+ZSH_PIP_CACHE_FILE=~/.pip/zsh-cache
+ZSH_PIP_INDEXES=(https://pypi.python.org/simple/)
+
+zsh-pip-clear-cache() {
+  rm $ZSH_PIP_CACHE_FILE
+  unset piplist
+}
+
+zsh-pip-clean-packages() {
+    sed -n '/<a href/ s/.*>\([^<]\{1,\}\).*/\1/p'
+}
+
+zsh-pip-cache-packages() {
+  if [[ ! -d ${ZSH_PIP_CACHE_FILE:h} ]]; then
+      mkdir -p ${ZSH_PIP_CACHE_FILE:h}
+  fi
+
+  if [[ ! -f $ZSH_PIP_CACHE_FILE ]]; then
+      echo -n "(...caching package index...)"
+      tmp_cache=/tmp/zsh_tmp_cache
+      for index in $ZSH_PIP_INDEXES ; do
+          # well... I've already got two problems
+          curl $index 2>/dev/null | \
+              zsh-pip-clean-packages \
+               >> $tmp_cache
+      done
+      sort $tmp_cache | uniq | tr '\n' ' ' > $ZSH_PIP_CACHE_FILE
+      rm $tmp_cache
+  fi
+}

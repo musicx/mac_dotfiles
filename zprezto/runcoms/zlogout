@@ -1,0 +1,15 @@
+#
+# Executes commands at logout.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Print the message.
+cat <<-EOF
+
+I guess you're using Terminal if you see this.
+Use iTerm instead!
+HuLaLaLaLa~~~
+  -- Eric Liu
+EOF

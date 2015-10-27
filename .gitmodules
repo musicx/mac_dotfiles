@@ -1,0 +1,15 @@
+[submodule "vim_runtime/bundle/vundle"]
+	path = vim_runtime/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "zprezto/modules/history-substring-search/external"]
+	path = zprezto/modules/history-substring-search/external
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "zprezto/modules/syntax-highlighting/external"]
+	path = zprezto/modules/syntax-highlighting/external
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zprezto/modules/completion/external"]
+	path = zprezto/modules/completion/external
+	url = https://github.com/zsh-users/zsh-completions.git

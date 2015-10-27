@@ -1,0 +1,16 @@
+Host *
+TCPKeepAlive yes
+ServerAliveInterval 120
+ServerAliveCountMax 30
+
+Host gitlab.alibaba-inc.com
+IdentityFile ~/.ssh/id_rsa
+
+Host github.com
+IdentityFile ~/.ssh/id_rsa
+
+Host localhost
+IdentityFile ~/.ssh/rae_rsa
+
+Host 100.81.137.*
+IdentityFile ~/.ssh/ali_rsa
