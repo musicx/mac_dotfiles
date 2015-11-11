@@ -307,11 +307,12 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " change windows size
-nmap <C-_> <C-W>_
-nmap <M-Up> <C-W>+
-nmap <M-Down> <C-W>-
-nmap <M-Right> <C-W>>
-nmap <M-Left> <C-W><
+" <C-W>_ / <C-W>| / <C-W>= for maximize horizontally, vertically and equally
+"nmap <C-_> <C-W>_
+nmap <leader><Up> <C-W>+
+nmap <leader><Down> <C-W>-
+nmap <leader><Right> <C-W>>
+nmap <leader><Left> <C-W><
 
 " Move window position
 map <C-Up> <C-W>K
@@ -442,12 +443,10 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 " return '' otherwise
 function! StatuslineTrailingSpaceWarning()
     if !exists("b:statusline_trailing_space_warning")
-
         if !&modifiable
             let b:statusline_trailing_space_warning = ''
             return b:statusline_trailing_space_warning
         endif
-
         if search('\s\+$', 'nw') != 0
             let b:statusline_trailing_space_warning = '[\s]'
         else
@@ -532,7 +531,6 @@ endfunction
 function! s:Median(nums)
     let nums = sort(a:nums)
     let l = len(nums)
-
     if l % 2 == 1
         let i = (l-1) / 2
         return nums[i]
@@ -550,17 +548,17 @@ endfunction
 map <Home> ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+"nmap <M-j> mz:m+<cr>`z
+"nmap <M-k> mz:m-2<cr>`z
+"vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+"vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
+"if has("mac") || has("macunix")
+  "nmap <D-j> <M-j>
+  "nmap <D-k> <M-k>
+  "vmap <D-j> <M-j>
+  "vmap <D-k> <M-k>
+"endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -598,7 +596,7 @@ vnoremap <silent> <leader>gr :call VisualSelection('replace', '')<CR>
 nnoremap <leader>gd :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
-nnoremap <leader>gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+nnoremap <leader>gc :vimgrep // <C-R>%<C-A>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -858,7 +856,7 @@ if has("persistent_undo")
         au!
         au BufWritePre *.tmp setlocal noundofile
         au BufWritePre *.bak setlocal noundofile
-        "au BufWritePre /tmp/* setlocal noundofile
+        au BufWritePre /tmp/* setlocal noundofile
         "au BufWritePre COMMIT_EDITMSG setlocal noundofile
         "au BufWritePre .vim-aside setlocal noundofile
     augroup END
@@ -922,8 +920,9 @@ endfunc
 " => Insert mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map Alt-Space to underscore
-inoremap <M-Space> _
-cnoremap <M-Space> _
+" somehow these dont work
+"inoremap <M-Space> _
+"cnoremap <M-Space> _
 
 " Add undo point before Ctrl-U deletes the whole line
 inoremap <C-U> <C-G>u<C-U>
