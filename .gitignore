@@ -1,5 +1,5 @@
 ssh/*
-continuum/
 !ssh/config
-vim_runtime/bundle/
+continuum/
+vim_runtime/bundle/*
 !vim_runtime/bundle/vundle
