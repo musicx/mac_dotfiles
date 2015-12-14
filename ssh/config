@@ -3,6 +3,9 @@ TCPKeepAlive yes
 ServerAliveInterval 120
 ServerAliveCountMax 30
 
+Host gitlab.alipay-inc.com
+IdentityFile ~/.ssh/id_rsa
+
 Host gitlab.alibaba-inc.com
 IdentityFile ~/.ssh/id_rsa
 
