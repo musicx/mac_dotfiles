@@ -7,7 +7,7 @@ alias v='vim'
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
 alias rscp='rsync -Pravdtze ssh'
-export SSH_DPORT=9999
+export SSH_DPORT=8139
 alias tf='ssh -D $SSH_DPORT'
 alias ef='export http_proxy=socks5://127.0.0.1:$SSH_DPORT https_proxy=socks5://127.0.0.1:$SSH_DPORT'
 alias sf='http_proxy=127.0.0.1:8136 https_proxy=127.0.0.1:8136'
@@ -43,8 +43,8 @@ alias unexport='unset'
 alias ccat='pygmentize -O bg=dark'
 
 #alias du='du -kh'
-alias dud='du --max-depth=1'
-alias duf='du -s'
+alias dum='du --max-depth=1'
+alias dus='du -s'
 #alias df='df -kTh'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
@@ -78,8 +78,14 @@ alias -g PY="-i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com"
 alias -g SB="-Dsbt.override.build.repos=true"
 
 # typoes
-alias cd..='cd ..'
 alias lcd='l;cd'
+
+# tmux
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
 
 # git
 alias gl="git pull"
@@ -153,16 +159,20 @@ alias stt='st .'
 unalias scp
 #alias scpsas1='scp -P 8011'
 
-#alias sshext='ssh mingxian.lyj@100.81.137.24'
 export ALIEXT1="mingxian.lyj@100.81.137.24"
 export ALIEXT2="mingxian.lyj@100.81.137.25"
+alias ssh24='ssh mingxian.lyj@100.81.137.24'
+alias ssh25='ssh mingxian.lyj@100.81.137.25'
 
-export SPARK1="mingxian.lyj@bde-1.inc.alipay.net"
-export SPARK4="mingxian.lyj@bde-4.inc.alipay.net"
-export SPARK3="mingxian.lyj@bde-3.inc.alipay.net"
+export BDE1="mingxian.lyj@bde-1.inc.alipay.net"
+export BDE4="mingxian.lyj@bde-4.inc.alipay.net"
+export BDE3="mingxian.lyj@bde-3.inc.alipay.net"
 
+alias jzue='ssh mingxian.lyj@login1.zue.alibaba.org'
+alias jztg='ssh mingxian.lyj@login1.ztg.alibaba.org'
 
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
     --cache=$HOME/.npm/.cache/cnpm \
     --disturl=https://npm.taobao.org/dist \
     --userconfig=$HOME/.cnpmrc"
+

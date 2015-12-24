@@ -313,3 +313,7 @@ function git_update_pwd() {
         (cd "$dir" && git pull)
     done
 }
+
+ossput() { python ~/Work/Alipay/oss/osscmd put $1 oss://101579 }
+ossget() { python ~/Work/Alipay/oss/osscmd get oss://101579/$1 $1 }
+
