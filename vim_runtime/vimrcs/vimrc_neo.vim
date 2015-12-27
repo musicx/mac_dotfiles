@@ -2,7 +2,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=9999
+set history=700
 
 " Enable filetype plugins
 filetype plugin on
@@ -335,8 +335,8 @@ map <leader>ba :1,1000 bd!<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>tl :tabnext
+map <leader>tm :tabmove 
+map <leader>tl :tabnext 
 
 " some more [] motions
 map ]w gt
@@ -571,7 +571,7 @@ autocmd BufWritePre *.coffee :call DeleteTrailingWS()
 nmap <leader>mm :call DeleteTrailingWS()<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>ms mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>ms mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 
 """"""""""""""""""""""""""""""
@@ -584,7 +584,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching
+" => vimgrep searching 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press <leader>gg you vimgrep after the selected text
 vnoremap <silent> <leader>gg :call VisualSelection('grep', '')<CR>
@@ -656,6 +656,9 @@ endif
 
 " enable matchit
 runtime macros/matchit.vim
+
+" Map Space for folding
+map <Leader><Space> za
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
@@ -791,7 +794,7 @@ endfunction
 " => TabLine settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set showtabline=2
-if exists("+showtabline")
+if exists("+showtabline")   
     set tabline=%!TabLineStyle()
 endif
 
@@ -987,7 +990,6 @@ let g:python_slow_sync = 1
 au FileType python setlocal foldmethod=expr
 au FileType python setlocal foldexpr=PythonFoldingExpr(v:lnum)
 au FileType python setlocal foldtext=PythonFoldingText()
-au FileType python setlocal foldlevel=3
 
 " Python motion
 au FileType python call PythonMotionMap()
@@ -996,6 +998,7 @@ au FileType python call PythonMotionMap()
 au FileType python inoremap <buffer> $r return
 au FileType python inoremap <buffer> $i import
 au FileType python inoremap <buffer> $p print
+au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
 "au FileType python map <buffer> <leader>1 /class
 "au FileType python map <buffer> <leader>2 /def
 "au FileType python map <buffer> <leader>C ?class
@@ -1016,7 +1019,7 @@ let s:def_regex = '^\s*\(class\|def\) \w\+'
 
 fun! PythonFoldingText()
     let fs = v:foldstart
-    while getline(fs) =~ '^\s*@'
+    while getline(fs) =~ '^\s*@' 
         let fs = nextnonblank(fs + 1)
     endwhile
     let line = getline(fs)
@@ -1052,7 +1055,7 @@ fun! PythonFoldingExpr(lnum)
         return 0
     endif
     return '='
-endfunction
+endfunction 
 
 fun! PythonMotionMap()
     nnoremap <buffer> ]]  :<C-U>call MotionMove('^\s*\(class\\|def\)\s', '')<CR>
@@ -1209,31 +1212,28 @@ let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_cache_dir = s:vim_cache . '/ctrlp_cache'
 
 let g:ctrlp_map = '<C-f>'
-nmap <C-b> :CtrlPBuffer<cr>
-nmap <C-m> :CtrlPMRU<cr>
-nmap <leader>fh :CtrlP<space>~<cr>
-nmap <leader>fc :CtrlP<space><C-r>=expand('%:p:h')<cr>
+map <C-b> :CtrlPBuffer<cr>
+map <leader>fh :CtrlP<space>~<cr>
+map <leader>fc :CtrlP<space><C-r>=expand('%:p:h')<cr>
 
 let g:ctrlp_max_height = 20
-
+"let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(exe|so|dll|DS_Store)$'}
+    \ 'dir' : '\.git$\|\.hg$\|\.svn$' ,
+    \ 'file' : '\.exe$\|\.so$\|\.dll$\|^\.DS_Store\|^\.git\|^\.coffee' }
 
 if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
     " Use ag in CtrlP for listing files.
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     " Ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
-else
-    let g:ctrlp_user_command = 'find %s -type f'
 endif
 
 "let g:ctrlp_user_command = 'find %s -type f'       " MacOSX/Linux
 "let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
 
-" Files MRU should not remember
-let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*'
 
 """"""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
@@ -1246,13 +1246,7 @@ let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*'
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated .git'
-"if executable('ag')
-    "" Use Ag over Grep
-    "set grepprg = 'ag --nogroup --nocolor'
-"else
-    "set grepprg = 'grep -nH'
-"endif
-set grepprg = "grep -nH"
+set grepprg=/bin/grep\ -nH
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1261,7 +1255,7 @@ set grepprg = "grep -nH"
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
-map <leader>nc :NERDTreeCWD<cr>
+map <leader>nc :NERDTree<space><C-r>=expand('%:p:h')<cr><cr>
 cno <expr> $nt getcmdtype() = ':' ? NERDTree : '$nt'
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.swp$', '\.swo$', '\.git', '\.hg', '\.svn', '\.bzr']
 "let NERDTreeShowHidden = 1
@@ -1272,8 +1266,8 @@ let NERDTreeShowBookmarks = 1
 " => surround.vim config
 " Annotate strings with gettext http://amix.dk/blog/post/19678
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vmap Si S(i_<esc>f)
-"au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
+vmap Si S(i_<esc>f)
+au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1283,22 +1277,11 @@ let NERDTreeShowBookmarks = 1
 nmap <leader>/ :call NERDComment(0, "invert")<cr>
 vmap <leader>/ :call NERDComment(0, "invert")<cr>
 
-" comment whole line if there is no block commenter and only part of the line is selected
-let NERDCommentWholeLinesInVMode=2
-
-" add extra space when commenting lines
-let NERDSpaceDelims = 1
-
-" remove extra spaces between commenter and code
-let NERDRemoveExtraSpaces=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gundo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gu :GundoToggle<cr>
-"let g:gundo_width = 60
-let g:gundo_preview_height = 20
-let g:gundo_preview_bottom = 1
 
 
 """""""""""""""""""""""""""""""""
@@ -1316,82 +1299,231 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 inoremap <C-Space> <C-X><C-O>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YouCompleteMe settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" shortcuts for YCM commands
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>dc :YcmCompleter GetDoc<CR>
-
-" Use YCM in comments
-let g:ycm_complete_in_comments = 1
-
-" Disable YCM if the file is larger than given size in Kb
-let g:ycm_disable_for_files_larger_than_kb = 5000
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ultisnips settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<leader><cr>"
-let g:UltiSnipsJumpForwardTrigger = "<c-m>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-w>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit = "vertical"
+"""""""""""""""""""""""""""""""""
+" => neocomplcache settings
+" => shared with neocomplete.vim, which require lua
+"""""""""""""""""""""""""""""""""
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+"let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+"let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
+" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+"let g:neocomplcache_min_syntax_length = 3
+"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#min_syntax_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => airline settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled = 1
+" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+"            \ 'default' : '',
+"            \ 'vimshell' : $HOME.'/.vimshell_hist',
+"            \ 'scheme' : $HOME.'/.gosh_completions'
+"            \ }
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
 
-" Enable powerline symbols
-let g:airline_powerline_fonts = 0
+" Define keyword.
+"if !exists('g:neocomplcache_keyword_patterns')
+    "let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Airline theme
-let g:airline_theme = "wombat"
 
-" Enable/disable tagbar integration
-let g:airline#extensions#tagbar#enabled = 0
+" Plugin key-mappings.
+"imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"inoremap <expr><C-g>     neocomplcache#undo_completion()
+"inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Enable/disable detection of whitespace errors
-let g:airline#extensions#whitespace#enabled = 0
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    "return neocomplcache#smart_close_popup() . "\<CR>"
+    return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-" csv colunm shown as number or name
-let g:airline#extensions#csv#column_display = 'Name'
+inoremap <expr><C-d>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+inoremap <expr><C-u>  pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
-" Customize symbols used
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplete#enable_auto_select = 1
+
+" Enable heavy omni completion.
+"if !exists('g:neocomplcache_omni_patterns')
+    "let g:neocomplcache_omni_patterns = {}
+"endif
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
-let g:airline_left_sep = '⮀'
-let g:airline_right_sep = '⮂'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_alt_sep = '⮃'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '◀'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-let g:airline#extensions#tabline#left_sep = '⮀'
-let g:airline#extensions#tabline#left_alt_sep = '⮁'
+
+"""""""""""""""""""""""""""""""""""""""
+" => neosnippet settings
+"""""""""""""""""""""""""""""""""""""""
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+"xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+    "set conceallevel=2 concealcursor=i
+    set conceallevel=2 concealcursor=niv
+endif
+
+" Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='$HOME/.dotfiles/vim_runtime/bundle/vim-snippets/snippets'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" => Python-mode settings
+"""""""""""""""""""""""""""""""""""""""""""""
+" Disable if python support not present
+if !has('python')
+    let g:pymode = 1
+endif
+let g:pymode = 1
+
+" Key for show python documentation
+let g:pymode_doc_key = '<leader>k'
+
+" Key for run python code
+"let g:pymode_run_key = '<leader>r'
+
+" Key for set/unset breakpoint
+let g:pymode_breakpoint_key = '<leader>s'
+
+" Don't needed options
+let g:pymode_options = 0
+
+" For fast machines
+let g:pymode_syntax_slow_sync = 0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Pylint configuration file
+"""""""""""""""""""""""""""""""""""""""""""""""
+" Disable pylint checking every save
+let g:pymode_lint_write = 0
+
+" Switch pylint, pyflakes, pep8, mccabe code-checkers
+" Can have multiply values "pep8,pyflakes,mcccabe"
+"let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+
+" Run linter on the fly
+"let g:pymode_lint_onfly = 0
+
+" Minimal height of pylint error window
+let g:pymode_lint_minheight = 5
+
+" Maximal height of pylint error window
+let g:pymode_lint_maxheight = 10
+
+
+"""""""""""""""""""""""""""""""""""""""""
+" => Rope refactoring library
+"""""""""""""""""""""""""""""""""""""""""
+" Load rope plugin
+"let g:pymode_rope = 1
+
+" Auto create and open ropeproject
+let g:pymode_rope_auto_project = 1
+
+" Enable autoimport
+let g:pymode_rope_enable_autoimport = 1
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+
+" Auto generate global cache
+let g:pymode_rope_autoimport_generate = 1
+
+" The maximum number of syntax errors to fix for code assists
+let g:pymode_rope_codeassist_maxfixes = 10
+
+let g:pymode_rope_sorted_completions = 1
+
+let g:pymode_rope_extended_complete = 1
+
+
+let g:pymode_rope_confirm_saving = 1
+
+let g:pymode_rope_global_prefix = "<localleader>g"
+
+let g:pymode_rope_local_prefix = "<localleader>r"
+
+let g:pymode_rope_vim_completion = 1
+
+let g:pymode_rope_guess_project = 1
+
+" open a vertial split to show the "go to definition" result
+let g:pymode_rope_goto_def_newwin = "vnew"
+
+let g:pymode_rope_always_show_complete_menu = 0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => rainbow csv settings
+" => vim-ipython settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin would check TAB, semicolon, colon and whitespace on autodetect
-"let g:rcsv_delimiters    ;: ]
+" Disable default mappings
+let g:ipy_perform_mappings = 0
 
-" Max columns to check for autodetection
-let g:rcsv_max_columns = 20
+" Vim-IPython will block other completefunc plugins globally
+" using 'local' or anything other than 'global' to change to
+" local buffer or disable it.
+let g:ipy_completefunc = 'null'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1448,16 +1580,9 @@ let g:jedi#usages_command = "<localleader>n"
 " Enable <cr> within quotes
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
-
-" Control pairs to auto complete for different file types
 let g:delimitMate_matchpairs = "(:),[:],{:}"
 au FileType html,xml let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
-" Allow triple quotes
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-
-" Allow balancing pairs
-"let g:delimitMate_balance_matchpairs = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => auto correction settings
@@ -1475,19 +1600,31 @@ let g:indent_guides_enable_on_vim_startup = 1
 " => wildfire
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " this selects the next closest text object
-map <leader>ff <Plug>(wildfire-fuel)
+map <Leader>fo <Plug>(wildfire-fuel)
 " this selects the previous closest text object
-vmap <leader>fw <Plug>(wildfire-water)
+map <Leader>fi <Plug>(wildfire-water)
 
-nmap <leader>fs <Plug>(wildfire-quick-select)
+nmap <Leader>fs <Plug>(wildfire-quick-select)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim multiple cursor
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_next_key = '<C-n>'
+let g:multi_cursor_prev_key = '<C-p>'
+let g:multi_cursor_skip_key = '<C-x>'
+let g:multi_cursor_quit_key = '<ESC>'
+let g:multi_cursor_exit_from_visual_mode = 1
+let g:multi_cursor_exit_from_insert_mode = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => numbers settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_numbers = 0
-nnoremap <leader>re :NumbersOnOff<CR>
-nnoremap <leader>rn :NumbersToggle<CR>
+nnoremap <Leader>re :NumbersOnOff<CR>
+nnoremap <Leader>rn :NumbersToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1519,6 +1656,16 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => emmet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" enable just for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+let g:user_emmet_leader_key = '<C-Z>'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => run interactive command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ri :RunInInteractiveShell<space>
@@ -1532,16 +1679,9 @@ nmap [h <Plug>(GitGutterPrevHunk)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim ag setting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight the searched results
-let g:ag_highlight = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>tb :TagbarToggle<CR>
+nmap <Leader>ba :TagbarToggle<CR>
 let g:tagbar_type_go = {
     \ 'ctagstype': 'go',
     \ 'kinds' : [

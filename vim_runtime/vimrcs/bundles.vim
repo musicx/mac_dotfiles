@@ -10,26 +10,26 @@ Plugin 'gmarik/vundle'
 "-----------------
 " Code Completion
 "-----------------
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
 "Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
-"Plugin 'garbas/vim-snipmate'
 "Plugin 'ervandew/supertab'
 "Plugin 'mattn/zencoding-vim'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 
 "-----------------------
 " Writing Operation
 "-----------------------
 Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-surround'
 Plugin 'spiiph/vim-space'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
@@ -37,7 +37,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'panozzaj/vim-autocorrect'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'chrisbra/NrrwRgn'
 
 "--------------
 " Code Reading
@@ -45,7 +45,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'vim-scripts/greplace.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
@@ -55,12 +56,14 @@ Plugin 'godlygeek/tabular'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'vim-scripts/rainbow_csv.vim'
+Plugin 'chrisbra/csv.vim'
 
 "-------------
 " Other Utils
 " ------------
-Plugin 'Lokaltog/vim-powerline'
 "Plugin 'powerline/powerline'
+Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/mru.vim'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufexplorer.zip'
@@ -72,35 +75,32 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'danro/rename.vim'
 Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'vim-scripts/TabLineSet.vim'
-"Plugin 'humiaozuzu/fcitx-status'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'edkolev/promptline.vim'
 
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
-Plugin 'rweald/pig.vim'
-Plugin 'vim-scripts/SAS-Syntax'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'derekwyatt/vim-scala'
-"Plugin 'klen/python-mode'
 "Plugin 'vim-scripts/Vim-R-plugin'
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'nono/jquery.vim'
 "Plugin 'pangloss/vim-javascript'
-"Plugin 'beyondwords/vim-jinja2'
+"Plugin 'rweald/pig.vim'
+"Plugin 'vim-scripts/SAS-Syntax'
 
 "--------------
 " Color Scheme
 "--------------
-Plugin 'rickharris/vim-blackboard'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'rickharris/vim-monokai'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'Lokaltog/vim-distinguished'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'gilesbowkett/ir_black'
-Plugin 'croaky/vim-colors-github'
-Plugin 'tomasr/molokai'
+"Plugin 'rickharris/vim-blackboard'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'rickharris/vim-monokai'
+"Plugin 'tpope/vim-vividchalk'
+"Plugin 'Lokaltog/vim-distinguished'
+"Plugin 'gilesbowkett/ir_black'
+"Plugin 'croaky/vim-colors-github'
+"Plugin 'tomasr/molokai'
 
 "--------------
 " My Own Forks
@@ -111,11 +111,7 @@ Plugin 'musicx/conque'
 
 
 "vim-scripts repos
-Plugin 'Python-Syntax'
-"Plugin 'Smyck-Color-Scheme'
-"Plugin 'daylerees'
-"Plugin 'tomorrow-theme'
-"Plugin 'Comments'
+"Plugin 'Python-Syntax'
 
 "non github repos
 "Plugin 'git://git.wincent.com/command-t.git'
