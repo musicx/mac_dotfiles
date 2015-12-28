@@ -1140,14 +1140,6 @@ nmap <leader>bs :BufExplorerHorizontalSplit<cr>
 nmap <leader>bv :BufExplorerVerticalSplit<cr>
 
 
-""""""""""""""""""""""""""""""
-" => MRU plugin
-""""""""""""""""""""""""""""""
-let MRU_Max_Entries = 400
-let MRU_File = s:vim_cache . '/_vim_mru_files'
-map <leader>u :MRU<CR>
-
-
 """""""""""""""""""""""""""""""
 " => Powerline
 """""""""""""""""""""""""""""""
@@ -1189,7 +1181,12 @@ endif
 """"""""""""""""""""""""""""""
 " => YankRing
 """"""""""""""""""""""""""""""
+" where to save the yankring history
 let g:yankring_history_dir = s:vim_cache
+
+" yankring history control
+let g:yankring_max_history = 1000
+let g:yankring_min_element_length = 4
 
 " ,y to show the yankring
 nmap <leader>y :YRShow<cr>
@@ -1198,6 +1195,10 @@ nmap <leader>y :YRShow<cr>
 let g:yankring_replace_n_pkey = '[k'
 let g:yankring_replace_n_nkey = ']k'
 
+" control the size of the yankring window size
+" let g:yankring_window_use_horiz = 0  " Use vertical split
+let g:yankring_window_height = 20
+let g:yankring_window_increment = 50
 
 """"""""""""""""""""""""""""""
 " => CTRL-P

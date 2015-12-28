@@ -64,7 +64,6 @@ Plugin 'chrisbra/csv.vim'
 " ------------
 "Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/mru.vim'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufexplorer.zip'
 "Plugin 'fholgado/minibufexpl.vim'
