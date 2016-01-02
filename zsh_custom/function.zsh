@@ -204,44 +204,6 @@ function ft() {
     find . -name "$2" -exec grep -il "$1" {} \;
 }
 
-# pretty json command line
-if [[ $(whence $JSONTOOLS_METHOD) = "" ]]; then
-    JSONTOOLS_METHOD=""
-fi
-
-if [[ $(whence node) != "" && ( "x$JSONTOOLS_METHOD" = "x"  || "x$JSONTOOLS_METHOD" = "xnode" ) ]]; then
-    alias pp_json='xargs -0 node -e "console.log(JSON.stringify(JSON.parse(process.argv[1]), null, 4));"'
-    alias is_json='xargs -0 node -e "try {json = JSON.parse(process.argv[1]);} catch (e) { console.log(false); json = null; } if(json) { console.log(true); }"'
-    alias urlencode_json='xargs -0 node -e "console.log(encodeURIComponent(process.argv[1]))"'
-    alias urldecode_json='xargs -0 node -e "console.log(decodeURIComponent(process.argv[1]))"'
-elif [[ $(whence python) != "" && ( "x$JSONTOOLS_METHOD" = "x" || "x$JSONTOOLS_METHOD" = "xpython" ) ]]; then
-    alias pp_json='python -mjson.tool'
-    alias is_json='python -c "
-import json, sys;
-try:
-        json.loads(sys.stdin.read())
-except ValueError, e:
-        print False
-else:
-        print True
-sys.exit(0)"'
-    alias urlencode_json='python -c "
-import urllib, json, sys;
-print urllib.quote_plus(sys.stdin.read())
-sys.exit(0)"'
-    alias urldecode_json='python -c "
-import urllib, json, sys;
-print urllib.unquote_plus(sys.stdin.read())
-sys.exit(0)"'
-elif [[ $(whence ruby) != "" && ( "x$JSONTOOLS_METHOD" = "x" || "x$JSONTOOLS_METHOD" = "xruby" ) ]]; then
-    alias pp_json='ruby -e "require \"json\"; require \"yaml\"; puts JSON.parse(STDIN.read).to_yaml"'
-    alias is_json='ruby -e "require \"json\"; begin; JSON.parse(STDIN.read); puts true; rescue Exception => e; puts false; end"'
-    alias urlencode_json='ruby -e "require \"uri\"; puts URI.escape(STDIN.read)"'
-    alias urldecode_json='ruby -e "require \"uri\"; puts URI.unescape(STDIN.read)"'
-fi
-
-unset JSONTOOLS_METHOD
-
 # .gitignore automation
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 
@@ -265,29 +227,6 @@ function copyfile {
     [[ "$#" != 1 ]] && return 1
     local file_to_copy=$1
     cat $file_to_copy | pbcopy
-}
-
-# Plugin for highlighting file content
-alias colorize='colorize_via_pygmentize'
-
-colorize_via_pygmentize() {
-    if [ ! -x "$(which pygmentize)" ]; then
-        echo "package \'pygmentize\' is not installed!"
-        return -1
-    fi
-    if [ $# -eq 0 ]; then
-        pygmentize -g $@
-    fi
-    for FNAME in $@
-    do
-        filename=$(basename "$FNAME")
-        lexer=`pygmentize -N \"$filename\"`
-        if [ "Z$lexer" != "Ztext" ]; then
-            pygmentize -l $lexer "$FNAME"
-        else
-            pygmentize -g "$FNAME"
-        fi
-    done
 }
 
 # using marked 2 to open files
@@ -317,3 +256,75 @@ function git_update_pwd() {
 ossput() { python ~/Work/Alipay/oss/osscmd put $1 oss://101579 }
 ossget() { python ~/Work/Alipay/oss/osscmd get oss://101579/$1 $1 }
 
+_start_time=$SECONDS
+function _prompt_musicx_preexec {
+  _start_time=$SECONDS
+}
+
+function _calc_elapsed_time {
+  if [[ $timer_result -ge 3600 ]]; then
+    let "timer_hours = $timer_result / 3600"
+    let "remainder = $timer_result % 3600"
+    let "timer_minutes = $remainder / 60"
+    let "timer_seconds = $remainder % 60"
+    print -P "%B%F{red}>>> elapsed time ${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -ge 60 ]]; then
+    let "timer_minutes = $timer_result / 60"
+    let "timer_seconds = $timer_result % 60"
+    print -P "%B%F{yellow}>>> elapsed time ${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -gt 10 ]]; then
+    print -P "%B%F{green}>>> elapsed time ${timer_result}s%b"
+  fi
+}
+
+function _prompt_musicx_precmd {
+  timer_result=$(($SECONDS-$_start_time))
+  if [[ $timer_result -gt 10 ]]; then
+    _calc_elapsed_time
+  fi
+  _start_time=$SECONDS
+}
+
+
+# Load required functions.
+autoload -Uz add-zsh-hook
+
+# Add hook for calling git-info before each command.
+add-zsh-hook precmd _prompt_musicx_precmd
+add-zsh-hook preexec _prompt_musicx_preexec
+
+
+# Makes a directory and changes to it.
+function mkdcd {
+  [[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
+}
+
+# Changes to a directory and lists its contents.
+function cdls {
+  builtin cd "$argv[-1]" && ls "${(@)argv[1,-2]}"
+}
+
+# Pushes an entry onto the directory stack and lists its contents.
+function pushdls {
+  builtin pushd "$argv[-1]" && ls "${(@)argv[1,-2]}"
+}
+
+# Pops an entry off the directory stack and lists its contents.
+function popdls {
+  builtin popd "$argv[-1]" && ls "${(@)argv[1,-2]}"
+}
+
+# Prints columns 1 2 3 ... n.
+function slit {
+  awk "{ print ${(j:,:):-\$${^@}} }"
+}
+
+# Finds files and executes a command on them.
+function find-exec {
+  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
+}
+
+# Displays user owned processes status.
+function psu {
+  ps -U "${1:-$LOGNAME}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
+}

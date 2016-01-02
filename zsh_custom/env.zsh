@@ -16,12 +16,11 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=/Users/yijiliu/.go
 launchctl setenv GOROOT $GOROOT
 launchctl setenv GOPATH $GOPATH
-# 搬homebrew源
-export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
-
 export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
 
+# 搬homebrew源
+export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
 
 
 # c3 servers
