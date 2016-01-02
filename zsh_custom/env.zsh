@@ -5,7 +5,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
 #export C_INCLUDE_PATH=/usr/local/opt/curl/include
 #export CPLUS_INCLUDE_PATH=/usr/local/opt/curl/include
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
-export HOMEBREW_GITHUB_API_TOKEN=df91fc821a5f7d2680840ab85d53a952397a5d85
+export HOMEBREW_GITHUB_API_TOKEN=ba6bed0763b6fc9deb9e5067d0ad8fa07d9c92d4
 export JAVA_HOME=$(/usr/libexec/java_home)
 #export THEANO_FLAGS=device=gpu
 #export PYLEARN2_DATA_PATH=$HOME/Work/Python/PyLearn2/data

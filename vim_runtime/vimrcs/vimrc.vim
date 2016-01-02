@@ -1297,7 +1297,7 @@ let NERDRemoveExtraSpaces=1
 " => gundo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gu :GundoToggle<cr>
-"let g:gundo_width = 60
+let g:gundo_width = 30
 let g:gundo_preview_height = 20
 let g:gundo_preview_bottom = 1
 

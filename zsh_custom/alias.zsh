@@ -6,16 +6,13 @@ alias v='vim'
 
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
-alias rscp='rsync -Pravdtze ssh'
-export SSH_DPORT=8139
-alias tf='ssh -D $SSH_DPORT'
-alias ef='export http_proxy=socks5://127.0.0.1:$SSH_DPORT https_proxy=socks5://127.0.0.1:$SSH_DPORT'
-alias sf='http_proxy=127.0.0.1:8136 https_proxy=127.0.0.1:8136'
 alias hfs='hadoop fs'
+alias tf='tldr find'
+alias tu='tldr update'
 
-alias path='echo -e ${PATH//:/\\n}'
-
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+export SSH_DPORT=8136
+alias sf='http_proxy=127.0.0.1:$SSH_DPORT https_proxy=127.0.0.1:$SSH_DPORT'
+alias rscp='rsync -Pravdtze ssh'
 
 alias g='grep -in'
 alias h='history'
@@ -26,7 +23,7 @@ alias m='more'
 alias pf='ps -af'
 #alias pt='ps uxwf'
 alias r='rlogin'
-
+alias ppath='echo -e ${PATH//:/\\n}'
 alias lrg='ls -R | grep ":$" | sed -e '\'s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 alias tree='tree -Csu'
 
@@ -51,6 +48,7 @@ alias ff='find . -type f -name'
 alias rmr='rm -r'
 alias rmf='rm -f'
 alias fk='fuck'
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 alias ..='cd ../'
 alias ...='cd ../../'
