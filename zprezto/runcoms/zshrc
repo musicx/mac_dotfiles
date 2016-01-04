@@ -17,7 +17,7 @@ SAVEHIST=65536
 source "$HOME/.dotfiles/zsh_custom/env.zsh"
 source "$HOME/.dotfiles/zsh_custom/alias.zsh"
 source "$HOME/.dotfiles/zsh_custom/function.zsh"
-source "$HOME/.dotfiles/zsh_custom/iterm2_shell_integratin.zsh"
+#source "$HOME/.dotfiles/zsh_custom/iterm2_shell_integratin.zsh"
 #source "$HOME/.dotfiles/zsh_custom/tmux.zsh"
 
 # solve problem of manually quoting urls

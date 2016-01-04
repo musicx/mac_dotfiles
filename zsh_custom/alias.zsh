@@ -114,6 +114,9 @@ alias rmf='rm -f'
 # alias fk='fuck'
 # alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
+# mac osx
+alias o=open
+
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -126,18 +129,38 @@ alias cd....='cd ../../../'
 alias cd.....='cd ../../../../'
 
 # Command line head / tail shortcuts
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L="| less"
-alias -g M="| most"
-alias -g LL="2>&1 | less"
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g C='| wc -l'
 alias -g CA="2>&1 | cat -A"
+alias -g EG='|& egrep'
+alias -g EH='|& head'
+alias -g EL='|& less'
+alias -g ELS='|& less -S'
+alias -g ETL='|& tail -20'
+alias -g ET='|& tail'
+alias -g G='| grep'
+alias -g H='| head'
+alias -g L="| less"
+alias -g LL="2>&1 | less"
+alias -g LS='| less -S'
+alias -g M="| most"
 alias -g NE="2> /dev/null"
+alias -g NS='| sort -n'
 alias -g NUL="> /dev/null 2>&1"
 alias -g P="2>&1| pygmentize -l pytb"
 alias -g PY="-i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com"
+alias -g RNS='| sort -nr'
+alias -g S='| sort'
 alias -g SB="-Dsbt.override.build.repos=true"
+alias -g T='| tail'
+alias -g TL='| tail -20'
+alias -g US='| sort -u'
+alias -g X0G='| xargs -0 egrep'
+alias -g X0='| xargs -0'
+alias -g XG='| xargs egrep'
+alias -g X='| xargs'
 
 # typoes
 alias lcd='l;cd'
@@ -151,9 +174,9 @@ alias tkss='tmux kill-session -t'
 
 # git
 # alias gl="git pull"
-# alias glm='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
-# alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# alias glpg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias glm='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
+alias glc="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glpg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
 # alias for sublime text 
 if [[ $('uname') == 'Linux' ]]; then

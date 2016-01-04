@@ -14,12 +14,12 @@ function check_user_prompt_info() {
 function check_git_prompt_info() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [[ -z $(git_prompt_info) ]]; then
-            echo "%{$fg[blue]%}detached-head%{$reset_color%}) $(git_prompt_status) %{$fg_bold[red]%}➜ "
+            echo "%{$fg[blue]%}[%{$reset_color%}%{$fg[blue]%}detached-head%{$reset_color%} $(git_prompt_status)%{$reset_color%}%{$fg[blue]%}]%{$reset_color%} %{$fg_bold[green]%}➜ "
         else
-            echo "$(git_prompt_info) $(git_prompt_status) %{$fg[yellow]%}➜ "
+            echo "%{$fg[blue]%}[%{$reset_color%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}%{$fg[blue]%}]%{$reset_color%} %{$fg_bold[red]%}➜ "
         fi
     else
-        echo "%{$fg[yellow]%}➜ "
+        echo "%{$fg_bold[red]%}➜ "
     fi
 }
 
@@ -29,19 +29,19 @@ function get_right_prompt() {
     # else
         # echo -n "%{$fg[red]%}[%*]%{$reset_color%}"
     # fi
-    echo -n "%(?,,%{$fg_bold[red]%}●)%{$reset_color%} %{$fg[green]%}[%*]%{$reset_color%}"
+    [[ $(jobs -l | wc -l) -gt 0 ]] && echo -n " %{$fg_bold[blue]%}♨%{$reset_color%}"
 }
 
-PROMPT='
-$(check_user_prompt_info)\
-%{$fg_bold[magenta]%}[%~]\
- $(check_git_prompt_info)\
+PROMPT='$(check_user_prompt_info)\
+$(check_git_prompt_info)\
 %{$reset_color%}'
 
-RPROMPT='$(get_right_prompt)'
+RPROMPT='%(?,,%{$fg_bold[red]%}● )\
+%{$fg_bold[yellow]%}[%~]%{$reset_color%}\
+$(get_right_prompt) %{$fg[cyan]%}[%T]%{$reset_color%}'
 
 # Format for git_prompt_info()
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}⭠ "
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}⭠ "
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%} ✔"
@@ -54,11 +54,11 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg_bold[magenta]%}*"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[yellow]%}#"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?"
 ZSH_THEME_GIT_PROMPT_EQUAL_REMOTE="%{$fg_bold[green]%}="
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[yellow]%}>"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[yellow]%}<"
-# ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[yellow]%}⬆"
-# ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[yellow]%}⬇"
-ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg_bold[red]%}⥮"
+# ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[yellow]%}>"
+# ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[yellow]%}<"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}⬆"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[yellow]%}⬇"
+ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg_bold[red]%}⥮"
 ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[blue]%}✭"
 
 # Format for git_prompt_ahead()
