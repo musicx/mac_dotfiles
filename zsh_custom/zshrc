@@ -49,7 +49,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras autojump common-aliases pip python brew brew-cask colored-man osx sbt scala history jsontools mvn thefuck history-substring-search zsh-syntax-highlighting)
+plugins=(git git-extras autojump common-aliases compleat pip python brew brew-cask colored-man osx sbt scala history jsontools mvn thefuck history-substring-search zsh-syntax-highlighting)
 
 # User configuration
 

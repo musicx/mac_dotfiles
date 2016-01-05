@@ -1,10 +1,30 @@
 #!/usr/bin/env zsh
 
+if [[ "$USER" == "root" ]]; then 
+    MX_PROMPT_COLOR=blue
+else
+    MX_PROMPT_COLOR=red
+fi
+
+function box_name {
+    [ -f ~/.box-name ] && cat ~/.box-name || echo $HOST
+}
+
 function check_user_prompt_info() {
-    if [[ "$USER" == "root" ]]; then 
-        echo "%{$fg_bold[red]%}%n "
+    local mx_box_name=""
+    if [[ "$(box_name)" == "local" ]]; then
+        mx_box_name=""
+    else
+        mx_box_name="%{$fg[blue]%}$(box_name)%{$reset_color%} "
+    fi
+    if [[ "$USER" != "mingxian" ]]; then
+        if [[ "$USER" == "root" ]]; then 
+            echo "%{$fg_bold[red]%}%n%{$reset_color%} $mx_box_name"
+        else
+            echo "%{$fg_bold[green]%}%n%{$reset_color%} $mx_box_name"
+        fi
     else 
-        echo ""
+        echo "$mx_box_name"
     fi
 }
 
@@ -14,12 +34,12 @@ function check_user_prompt_info() {
 function check_git_prompt_info() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [[ -z $(git_prompt_info) ]]; then
-            echo "%{$fg[blue]%}[%{$reset_color%}%{$fg[blue]%}detached-head%{$reset_color%} $(git_prompt_status)%{$reset_color%}%{$fg[blue]%}]%{$reset_color%} %{$fg_bold[green]%}➜ "
+            echo "%{$fg[magenta]%}[%{$reset_color%}%{$fg_bold[magenta]%}detached-head%{$reset_color%} $(git_prompt_status)%{$reset_color%}%{$fg[magenta]%}]%{$reset_color%} %{$fg_bold[$MX_PROMPT_COLOR]%}➜ "
         else
-            echo "%{$fg[blue]%}[%{$reset_color%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}%{$fg[blue]%}]%{$reset_color%} %{$fg_bold[red]%}➜ "
+            echo "%{$fg[blue]%}[%{$reset_color%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}%{$fg[blue]%}]%{$reset_color%} %{$fg_bold[$MX_PROMPT_COLOR]%}➜ "
         fi
     else
-        echo "%{$fg_bold[red]%}➜ "
+        echo "%{$fg_bold[$MX_PROMPT_COLOR]%}➜ "
     fi
 }
 
@@ -50,16 +70,16 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%} ✔"
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg_bold[green]%}+"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg_bold[blue]%}!"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg_bold[red]%}-"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg_bold[magenta]%}*"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg_bold[cyan]%}*"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[yellow]%}#"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}?"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[magenta]%}?"
 ZSH_THEME_GIT_PROMPT_EQUAL_REMOTE="%{$fg_bold[green]%}="
-# ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[yellow]%}>"
-# ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_bold[yellow]%}<"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}⬆"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[yellow]%}⬇"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}>"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[yellow]%}<"
+# ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}⬆"
+# ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[yellow]%}⬇"
 ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg_bold[red]%}⥮"
-ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[blue]%}✭"
+ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[black]%}✭"
 
 # Format for git_prompt_ahead()
 # ZSH_THEME_GIT_PROMPT_AHEAD=" %{$fg_bold[white]%}^"

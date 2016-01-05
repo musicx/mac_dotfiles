@@ -25,15 +25,29 @@ alias mv="${aliases[mv]:-mv} -i"
 alias po='popd'
 alias pu='pushd'
 alias rm="${aliases[rm]:-rm} -i"
+alias rmr='rm -r'
+alias rmf='rm -f'
+alias rcp='rsync -v --progress'
+alias rmv='rsync -v --progress --remove-source-files'
+alias rscp='rsync -Pravdtze ssh'
+
+alias g='grep -in'
+alias egrep='egrep --colour=auto'
+alias h='history'
+alias hf='fc -il 1'
+alias jb='jobs -l'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 alias type='type -a'
 alias x='exit'
-alias scr='screen -r'
-alias scd='screen -d'
 alias vi='vim'
 alias v='vim'
+alias p='less'
+alias m='more'
 
+alias ls="${aliases[ls]:-ls} -hF --group-directories-first"
 alias l='ls -A'           # Lists in one column, hidden files.
-alias ll='ls -lFh'        # Lists human readable sizes.
+alias ll='ls -l'        # Lists human readable sizes.
 alias lr='ll -tR'         # Lists human readable sizes, recursively.
 alias la='ll -A'          # Lists human readable sizes, hidden files.
 alias lm='la | "$PAGER"'  # Lists human readable sizes, hidden files through pager.
@@ -77,20 +91,12 @@ alias tree='tree -Csu'
 
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
-alias hfs='hadoop fs'
 alias tf='tldr find'
 alias tu='tldr update'
+alias hfs='hadoop fs'
 
 export SSH_DPORT=8136
 alias sf='http_proxy=127.0.0.1:$SSH_DPORT https_proxy=127.0.0.1:$SSH_DPORT'
-alias rscp='rsync -Pravdtze ssh'
-
-alias g='grep -in'
-alias h='history'
-alias hf='fc -il 1'
-alias jb='jobs -l'
-alias p='less'
-alias m='more'
 
 alias r='rlogin'
 alias ppath='echo -e ${PATH//:/\\n}'
@@ -107,15 +113,23 @@ alias stnr='sort -n -r'
 alias unexport='unset'
 alias ccat='pygmentize -O bg=dark'
 
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
-alias rmr='rm -r'
-alias rmf='rm -f'
-# alias fk='fuck'
-# alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-
 # mac osx
 alias o=open
+
+# typoes
+alias lcd='l;cd'
+
+# tmux
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+alias scr='screen -r'
+alias scd='screen -d'
+
+# alias fk='fuck'
+# alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 alias ..='cd ../'
 alias ...='cd ../../'
@@ -162,15 +176,6 @@ alias -g X0='| xargs -0'
 alias -g XG='| xargs egrep'
 alias -g X='| xargs'
 
-# typoes
-alias lcd='l;cd'
-
-# tmux
-alias ta='tmux attach -t'
-alias ts='tmux new-session -s'
-alias tl='tmux list-sessions'
-alias tksv='tmux kill-server'
-alias tkss='tmux kill-session -t'
 
 # git
 # alias gl="git pull"

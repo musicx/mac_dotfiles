@@ -253,8 +253,8 @@ function git_update_pwd() {
     done
 }
 
-ossput() { python ~/Work/Alipay/oss/osscmd put $1 oss://101579 }
-ossget() { python ~/Work/Alipay/oss/osscmd get oss://101579/$1 $1 }
+ossput() { python ~/Work/Alipay/static/oss/osscmd put $1 oss://101579 }
+ossget() { python ~/Work/Alipay/static/oss/osscmd get oss://101579/$1 $1 }
 
 _start_time=$SECONDS
 function _prompt_musicx_preexec {
