@@ -8,12 +8,12 @@ ln -s ~/.dotfiles/vim_runtime .vim_runtime
 mkdir -p ~/.vim_tmp/undodir
 mkdir -p ~/.vim_tmp/backup
 mv ~/.zshrc ~/.zshrc.bak
-#ln -s ~/.dotfiles/zshrc .zshrc
-ln -s ~/.dotfiles/zprezto .zprezto
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
+ln -s ~/.dotfiles/zsh_custom/zshrc .zshrc
+# ln -s ~/.dotfiles/zprezto .zprezto
+# setopt EXTENDED_GLOB
+# for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  # ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+# done
 mv ~/.bashrc ~/.bashrc.bak
 ln -s ~/.dotfiles/bashrc .bashrc
 mv ~/.tmux.conf .tmux.conf.bak
