@@ -1262,7 +1262,7 @@ set grepprg = "grep -nH"
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
-map <leader>nc :NERDTreeCWD<cr>
+map <leader>nc :NERDTree<space><C-r>=expand('%:p:h')<cr><cr>
 cno <expr> $nt getcmdtype() = ':' ? NERDTree : '$nt'
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.swp$', '\.swo$', '\.git', '\.hg', '\.svn', '\.bzr']
 "let NERDTreeShowHidden = 1

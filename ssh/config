@@ -12,9 +12,6 @@ IdentityFile ~/.ssh/id_rsa
 Host github.com
 IdentityFile ~/.ssh/id_rsa
 
-Host localhost
-IdentityFile ~/.ssh/rae_rsa
-
 Host login1.zue.alibaba.org
 IdentityFile ~/.ssh/ali_rsa
 
