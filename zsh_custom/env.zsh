@@ -1,26 +1,28 @@
 # MACOSX
-export PATH=/usr/local/cuda/bin:$PATH
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
-export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
+# gpu env setting 
+#export PATH=/usr/local/cuda/bin:$PATH
+#export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
+#export DYLD_LIBRARY_PATH=$HOME/Work/Python/downloaded/cuDNN:$DYLD_LIBRARY_PATH
 #export C_INCLUDE_PATH=/usr/local/opt/curl/include
 #export CPLUS_INCLUDE_PATH=/usr/local/opt/curl/include
-export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
-export HOMEBREW_GITHUB_API_TOKEN=ba6bed0763b6fc9deb9e5067d0ad8fa07d9c92d4
 export JAVA_HOME=$(/usr/libexec/java_home)
-#export THEANO_FLAGS=device=gpu
-#export PYLEARN2_DATA_PATH=$HOME/Work/Python/PyLearn2/data
-export AUTOJUMP_IGNORE_CASE=1
-export DYLD_LIBRARY_PATH=$HOME/Work/Python/downloaded/cuDNN:$DYLD_LIBRARY_PATH
-export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec
+# go env setting
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=/Users/yijiliu/.go
 launchctl setenv GOROOT $GOROOT
 launchctl setenv GOPATH $GOPATH
+# odps access info
 export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
-
 # 搬homebrew源
 export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
+export HOMEBREW_GITHUB_API_TOKEN=ba6bed0763b6fc9deb9e5067d0ad8fa07d9c92d4
+# software env settings
+#export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
+#export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec
+#export THEANO_FLAGS=device=gpu
+#export PYLEARN2_DATA_PATH=$HOME/Work/Python/PyLearn2/data
+export AUTOJUMP_IGNORE_CASE=1
 
 
 # c3 servers

@@ -22,32 +22,34 @@ alias cp="${aliases[cp]:-cp} -i"
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias mv="${aliases[mv]:-mv} -i"
-alias po='popd'
-alias pu='pushd'
 alias rm="${aliases[rm]:-rm} -i"
 alias rmr='rm -r'
 alias rmf='rm -f'
 alias rcp='rsync -v --progress'
 alias rmv='rsync -v --progress --remove-source-files'
 alias rscp='rsync -Pravdtze ssh'
+alias x='exit'
+alias type='type -a'
 
-alias g='grep -in'
-alias egrep='egrep --colour=auto'
-alias h='history'
-alias hf='fc -il 1'
-alias jb='jobs -l'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
-alias type='type -a'
-alias x='exit'
+# alias grep='grep --color --exclude-dir={.git,.svn,CVS,.hg,.bzr} --exclude={.git,.svn,CVS,.hg,.bzr}'
+alias g='grep -in'
+alias egrep='egrep --colour=auto'
+alias sgrep='grep -R -n -H -C 5'
+alias hs='history'
+alias hf='fc -il 1'
+alias jb='jobs -l'
 alias vi='vim'
 alias v='vim'
-alias p='less'
 alias m='more'
+alias p='less'
+alias h='head'
+alias t='tail -f'
 
 alias ls="${aliases[ls]:-ls} -hF --group-directories-first"
 alias l='ls -A'           # Lists in one column, hidden files.
-alias ll='ls -l'        # Lists human readable sizes.
+alias ll='ls -l'          # Lists human readable sizes.
 alias lr='ll -tR'         # Lists human readable sizes, recursively.
 alias la='ll -A'          # Lists human readable sizes, hidden files.
 alias lm='la | "$PAGER"'  # Lists human readable sizes, hidden files through pager.
@@ -56,7 +58,10 @@ alias lk='ll -Sr'         # Lists sorted by size, largest last.
 alias lt='ll -tr'         # Lists sorted by date, most recent last.
 alias lc='lt -c'          # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'          # Lists sorted by date, most recent last, shows access time.
-alias sl='ls'             # I often screw this up.
+alias ldot='ll -d .*'
+alias lS='ls -1Ss'
+alias lart='ls -1cart'
+alias lrt='ls -1crt'
 
 alias pbc='pbcopy'
 alias pbp='pbpaste'
@@ -85,9 +90,9 @@ else
     alias topm='top -o %MEM'
   fi
 fi
-alias pf='ps -af'
-alias tree='tree -Csu'
+alias pf='ps -f'
 #alias pt='ps uxwf'
+alias tree='tree -Csu'
 
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
@@ -105,7 +110,6 @@ alias mdplus='open ~/Work/Languages/js/packages/markdown-plus/index.zh_CN.html'
 alias mdses='(export PORT=5000 && node ~/Work/Languages/js/packages/stackedit/server.js) &'
 alias mdse='open -a "Safari" "http://localhost:5000/"'
 
-#alias which='type -all'
 #alias print='/usr/bin/lp -o nobanner -d $LPDEST' 
 #alias pjet='enscript -h -G -fCourier9 -d $LPDEST'
 #alias background='xv -root -quit -max -rmode 5'  
@@ -141,6 +145,9 @@ alias cd..='cd ../'
 alias cd...='cd ../../'
 alias cd....='cd ../../../'
 alias cd.....='cd ../../../../'
+
+alias po='popd'
+alias pu='pushd'
 
 # Command line head / tail shortcuts
 alias -g ...='../..'
@@ -183,44 +190,36 @@ alias glm='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
 alias glc="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glpg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
-# alias for sublime text 
-if [[ $('uname') == 'Linux' ]]; then
-    local _sublime_linux_paths > /dev/null 2>&1
-    _sublime_linux_paths=(
-        "$HOME/bin/sublime_text"
-        "/opt/sublime_text/sublime_text"
-        "/usr/bin/sublime_text"
-        "/usr/local/bin/sublime_text"
-        "/usr/bin/subl"
-    )
-    for _sublime_path in $_sublime_linux_paths; do
-        if [[ -a $_sublime_path ]]; then
-            st_run() { $_sublime_path $@ >/dev/null 2>&1 &| }
-            alias st=st_run
-            break
-        fi
-    done
-elif  [[ "$OSTYPE" = darwin* ]]; then
-    local _sublime_darwin_paths > /dev/null 2>&1
-    _sublime_darwin_paths=(
-        "/usr/local/bin/subl"
-        "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
-        "/Applications/Sublime Text 3.app/Contents/SharedSupport/bin/subl"
-        "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"
-        "$HOME/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
-        "$HOME/Applications/Sublime Text 3.app/Contents/SharedSupport/bin/subl"
-        "$HOME/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"
-    )
-    for _sublime_path in $_sublime_darwin_paths; do
-        if [[ -a $_sublime_path ]]; then
-            alias subl="'$_sublime_path'"
-            alias st=subl
-            break
-        fi
-    done
-fi
+# zsh is able to auto-do some kungfoo
+# depends on the SUFFIX :)
+if is-at-least 4.2.0; then
+  # open browser on urls
+  # _browser_fts=(htm html de org net com at cx nl se dk dk php)
+  # for ft in $_browser_fts ; do alias -s $ft=$BROWSER ; done
 
-alias stt='st .'
+  # _editor_fts=(cpp cxx cc c hh h inl asc txt TXT tex)
+  # for ft in $_editor_fts ; do alias -s $ft=$EDITOR ; done
+
+  # _image_fts=(jpg jpeg png gif mng tiff tif xpm)
+  # for ft in $_image_fts ; do alias -s $ft=$XIVIEWER; done
+
+  # _media_fts=(ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm)
+  # for ft in $_media_fts ; do alias -s $ft=mplayer ; done
+
+  # #read documents
+  # alias -s pdf=acroread
+  # alias -s ps=gv
+  # alias -s dvi=xdvi
+  # alias -s chm=xchm
+  # alias -s djvu=djview
+
+  #list whats inside packed file
+  alias -s zip="unzip -l"
+  alias -s rar="unrar l"
+  alias -s tar="tar tf"
+  alias -s tar.gz="echo "
+  alias -s ace="unace l"
+fi
 
 # out of RAE
 #export BASTION=phx01seh01.phx.paypal.com
