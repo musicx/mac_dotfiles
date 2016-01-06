@@ -16,7 +16,7 @@ export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
 # 搬homebrew源
 export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
-export HOMEBREW_GITHUB_API_TOKEN=ba6bed0763b6fc9deb9e5067d0ad8fa07d9c92d4
+export HOMEBREW_GITHUB_API_TOKEN=ca02db25f85500a15d2f782bf3dad43b58681275
 # software env settings
 #export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
 #export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec

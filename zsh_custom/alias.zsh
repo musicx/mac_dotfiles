@@ -19,6 +19,7 @@ alias rm='nocorrect rm'
 # Define general aliases.
 alias cpf="${aliases[cp]:-cp} -f"
 alias cp="${aliases[cp]:-cp} -i"
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias mv="${aliases[mv]:-mv} -i"
@@ -28,8 +29,9 @@ alias rmf='rm -f'
 alias rcp='rsync -v --progress'
 alias rmv='rsync -v --progress --remove-source-files'
 alias rscp='rsync -Pravdtze ssh'
-alias x='exit'
+alias x=exit
 alias type='type -a'
+alias ex=extract
 
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
@@ -37,14 +39,14 @@ alias ff='find . -type f -name'
 alias g='grep -in'
 alias egrep='egrep --colour=auto'
 alias sgrep='grep -R -n -H -C 5'
-alias hs='history'
+alias hs=history
 alias hf='fc -il 1'
 alias jb='jobs -l'
-alias vi='vim'
-alias v='vim'
-alias m='more'
-alias p='less'
-alias h='head'
+alias vi=vim
+alias v=vim
+alias m=more
+alias p=less
+alias h=head
 alias t='tail -f'
 
 alias ls="${aliases[ls]:-ls} -hF --group-directories-first"
@@ -63,8 +65,8 @@ alias lS='ls -1Ss'
 alias lart='ls -1cart'
 alias lrt='ls -1crt'
 
-alias pbc='pbcopy'
-alias pbp='pbpaste'
+alias pbc=pbcopy
+alias pbp=pbpaste
 
 # File Download
 if (( $+commands[curl] )); then
@@ -115,7 +117,7 @@ alias mdse='open -a "Safari" "http://localhost:5000/"'
 #alias background='xv -root -quit -max -rmode 5'  
 alias stnr='sort -n -r'
 alias unexport='unset'
-alias ccat='pygmentize -O bg=dark'
+alias ccat=colorize
 
 # mac osx
 alias o=open
