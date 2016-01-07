@@ -44,6 +44,7 @@ alias hf='fc -il 1'
 alias jb='jobs -l'
 alias vi=vim
 alias v=vim
+alias vf='f -e vim'
 alias m=more
 alias p=less
 alias h=head
@@ -121,6 +122,7 @@ alias ccat=colorize
 
 # mac osx
 alias o=open
+alias of='a -e open'
 
 # typoes
 alias lcd='l;cd'
