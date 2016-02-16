@@ -16,13 +16,14 @@ export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
 # 搬homebrew源
 export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
-export HOMEBREW_GITHUB_API_TOKEN=ca02db25f85500a15d2f782bf3dad43b58681275
+export HOMEBREW_GITHUB_API_TOKEN=0d4cbfb6cfa7a8cf2c1507599803e6076c88f256
 # software env settings
 #export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
 #export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec
 #export THEANO_FLAGS=device=gpu
 #export PYLEARN2_DATA_PATH=$HOME/Work/Python/PyLearn2/data
 export AUTOJUMP_IGNORE_CASE=1
+export CHEATCOLORS=true
 
 
 # c3 servers

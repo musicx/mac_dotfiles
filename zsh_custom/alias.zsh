@@ -42,6 +42,7 @@ alias sgrep='grep -R -n -H -C 5'
 alias hs=history
 alias hf='fc -il 1'
 alias jb='jobs -l'
+alias vim=nvim
 alias vi=vim
 alias v=vim
 alias vf='f -e vim'

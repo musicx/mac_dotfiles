@@ -614,6 +614,18 @@ map <leader>vo ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => copy matches
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,zz will toggle and untoggle spell checking
@@ -1126,6 +1138,20 @@ au BufNewFile,BufRead *.mb set filetype=groovy
 """""""""""""""""""""""""""""""
 " FileType related
 au BufNewFile,BufRead *.md set filetype=markdown
+
+
+"""""""""""""""""""""""""""""""
+" => XML section
+"""""""""""""""""""""""""""""""
+" Pretty print xml content
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+
+"""""""""""""""""""""""""""""""
+" => JSON section
+"""""""""""""""""""""""""""""""
+" Pretty print json content
+au FileType json setlocal equalprg=python\ -m\ json.tool\ 2>/dev/null
 
 
 """"""""""""""""""""""""""""""
