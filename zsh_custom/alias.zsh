@@ -41,7 +41,7 @@ alias sgrep='grep -R -n -H -C 5'
 alias hs=history
 alias hf='fc -il 1'
 alias jb='jobs -l'
-alias vim=nvim
+# alias n=nvim
 alias vi=vim
 alias v=vim
 alias vf='f -e vim'
@@ -250,3 +250,14 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
 done
+
+# generic colouriser
+GRC=`which grc`
+if [ "$TERM" != dumb ] && [ -n "$GRC" ]
+    then
+        alias colourify="$GRC -es --colour=auto"
+        alias configure='colourify ./configure'
+        for app in {diff,make,gcc,g++,ping,traceroute}; do
+            alias "$app"='colourify '$app
+    done
+fi

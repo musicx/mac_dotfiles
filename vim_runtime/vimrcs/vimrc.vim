@@ -270,7 +270,7 @@ set textwidth=100
 set autoindent
 set smartindent
 set wrap "Wrap lines
-map <leader>wr :setlocal wrap!<cr>
+nmap <leader>wr :setlocal wrap!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -301,10 +301,10 @@ map <leader>gn :%s///gn<cr>
 map <silent> <leader>h :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
 
 " change windows size
 " <C-W>_ / <C-W>| / <C-W>= for maximize horizontally, vertically and equally
@@ -315,10 +315,10 @@ nmap <leader><Right> <C-W>>
 nmap <leader><Left> <C-W><
 
 " Move window position
-map <C-Up> <C-W>K
-map <C-Down> <C-W>J
-map <C-Left> <C-W>H
-map <C-Right> <C-W>L
+nmap <C-Left> <C-W>H
+nmap <C-Down> <C-W>J
+nmap <C-Up> <C-W>K
+nmap <C-Right> <C-W>L
 
 " Control where to put the new split window
 "set splitbelow
@@ -629,7 +629,7 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,zz will toggle and untoggle spell checking
-map <leader>zz :setlocal spell!<cr>
+nmap <leader>zz :setlocal spell!<cr>
 
 " Shortcuts using <leader>
 "map <leader>sn ]s
@@ -670,7 +670,7 @@ endif
 runtime macros/matchit.vim
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+nmap <leader>q :e ~/buffer<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -843,11 +843,11 @@ set guioptions-=L
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>ee :e! $HOME/.dotfiles/vim_runtime/vimrcs/vimrc.vim<cr>
+nmap <leader>ee :e! $HOME/.dotfiles/vim_runtime/vimrcs/vimrc.vim<cr>
 "autocmd! bufwritepost vimrc source ~/.vim/vimrcs/vimrc.vim
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
+nmap <leader>ew :e %%
+nmap <leader>es :sp %%
+nmap <leader>ev :vsp %%
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

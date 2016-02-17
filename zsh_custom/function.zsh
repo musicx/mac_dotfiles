@@ -5,6 +5,9 @@ function take() {
 
 function ffl() { find . -type f -iname '*'$*'*' -ls ; }
 function fe() { find . -type f -iname '*'$1'*' -exec "${2:-file}" {} \;  ; }
+function ft() { find . -name "$2" -exec grep -il "$1" {} \; }
+function fn() { find . -name "$1" 2>&1 | grep -v 'Permission denied' }
+
 function fstr()
 {
     OPTIND=1
@@ -127,10 +130,6 @@ function mcd() {
     mkdir -p "$1" && cd "$1";
 }
 
-function ft() {
-    find . -name "$2" -exec grep -il "$1" {} \;
-}
-
 # .gitignore automation
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 
@@ -246,12 +245,19 @@ function slit {
   awk "{ print ${(j:,:):-\$${^@}} }"
 }
 
-# Finds files and executes a command on them.
-function find-exec {
-  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
-}
-
 # Displays user owned processes status.
 function psu {
   ps -U "${1:-$LOGNAME}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
 }
+
+# visual studio code. a la `subl`
+code () {
+	if [[ $# = 0 ]]
+	then
+		open -a "Visual Studio Code"
+	else
+		[[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
+		open -a "Visual Studio Code" --args "$F"
+	fi
+}
+
