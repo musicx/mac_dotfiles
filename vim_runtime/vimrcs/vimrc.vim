@@ -1314,7 +1314,7 @@ vmap <leader>/ :call NERDComment(0, "invert")<cr>
 let NERDCommentWholeLinesInVMode=2
 
 " add extra space when commenting lines
-let NERDSpaceDelims = 1
+let NERDSpaceDelims=0
 
 " remove extra spaces between commenter and code
 let NERDRemoveExtraSpaces=1

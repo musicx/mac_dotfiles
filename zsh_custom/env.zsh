@@ -9,8 +9,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # go env setting
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=/Users/yijiliu/.go
-launchctl setenv GOROOT $GOROOT
-launchctl setenv GOPATH $GOPATH
+setenv GOROOT $GOROOT
+setenv GOPATH $GOPATH
 # odps access info
 export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
