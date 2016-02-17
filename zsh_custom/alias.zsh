@@ -24,8 +24,7 @@ alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
 alias mv="${aliases[mv]:-mv} -i"
 alias rm="${aliases[rm]:-rm} -i"
-alias rmr='rm -r'
-alias rmf='rm -f'
+alias rmf='rm -rf'
 alias rcp='rsync -v --progress'
 alias rmv='rsync -v --progress --remove-source-files'
 alias rscp='rsync -Pravdtze ssh'
@@ -50,6 +49,7 @@ alias m=more
 alias p=less
 alias h=head
 alias t='tail -f'
+alias c='pygmentize -O style=monokai -f console256 -g'
 
 alias ls="${aliases[ls]:-ls} -hF --group-directories-first"
 alias l='ls -A'           # Lists in one column, hidden files.
@@ -64,7 +64,7 @@ alias lc='lt -c'          # Lists sorted by date, most recent last, shows change
 alias lu='lt -u'          # Lists sorted by date, most recent last, shows access time.
 alias ldot='ll -d .*'
 alias lS='ls -1Ss'
-alias lart='ls -1cart'
+alias lart='ls -1cArt'
 alias lrt='ls -1crt'
 
 alias pbc=pbcopy
@@ -82,6 +82,8 @@ alias df='df -kh'
 alias du='du -kh'
 alias dum='du --max-depth=1'
 alias dus='du -s'
+# File size
+alias fs="stat -f \"%z bytes\""
 
 if (( $+commands[htop] )); then
   alias top=htop
@@ -194,6 +196,12 @@ alias -g X='| xargs'
 alias glm='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
 alias glc="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glpg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+# draw back a `git push`  or a `git commit`
+alias gdp="git push -f origin HEAD^:master"
+alias gdc="git reset --soft HEAD^"
+alias grs="git reset --soft"
+# git root
+alias groot='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
 # zsh is able to auto-do some kungfoo
 # depends on the SUFFIX :)
@@ -239,3 +247,6 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
     --disturl=https://npm.taobao.org/dist \
     --userconfig=$HOME/.cnpmrc"
 
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+    alias "$method"="lwp-request -m '$method'"
+done

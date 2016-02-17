@@ -94,20 +94,13 @@ Plugin 'derekwyatt/vim-scala'
 " Color Scheme
 "--------------
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'trevorrjohn/vim-obsidian'
 Plugin 'easysid/mod8.vim'
 Plugin 'mkarmona/colorsbox'
 Plugin 'hewo/vim-colorscheme-deepsea'
 Plugin 'justincampbell/vim-railscasts'
 Plugin 'ajh17/Spacegray.vim'
-"Plugin 'rickharris/vim-blackboard'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'rickharris/vim-monokai'
-"Plugin 'tpope/vim-vividchalk'
-"Plugin 'Lokaltog/vim-distinguished'
-"Plugin 'gilesbowkett/ir_black'
-"Plugin 'croaky/vim-colors-github'
-"Plugin 'tomasr/molokai'
+Plugin 'rickharris/vim-monokai'
+Plugin 'gilesbowkett/ir_black'
 
 "--------------
 " My Own Forks

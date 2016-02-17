@@ -1595,3 +1595,4 @@ let g:tagbar_type_scala = {
       \ 'v:variables:1'
     \ ]
 \ }
+
