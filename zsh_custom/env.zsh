@@ -9,14 +9,14 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # go env setting
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=/Users/yijiliu/.go
-setenv GOROOT $GOROOT
-setenv GOPATH $GOPATH
+#launchctl setenv GOROOT $GOROOT
+#launchctl setenv GOPATH $GOPATH
 # odps access info
 export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
 # 搬homebrew源
 export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
-export HOMEBREW_GITHUB_API_TOKEN=0d4cbfb6cfa7a8cf2c1507599803e6076c88f256
+export HOMEBREW_GITHUB_API_TOKEN=41956570e882903dadb4d10eac4d613035c70bd6
 # software env settings
 #export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
 #export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec
@@ -25,6 +25,7 @@ export HOMEBREW_GITHUB_API_TOKEN=0d4cbfb6cfa7a8cf2c1507599803e6076c88f256
 export AUTOJUMP_IGNORE_CASE=1
 export CHEATCOLORS=true
 
+eval $(docker-machine env default)
 
 # c3 servers
 #export JAVA_HOME=/usr/lib/jvm/jdk/

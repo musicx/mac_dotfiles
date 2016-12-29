@@ -85,6 +85,7 @@ alias dus='du -s'
 # File size
 alias fs="stat -f \"%z bytes\""
 
+alias htop='sudo htop'
 if (( $+commands[htop] )); then
   alias top=htop
 else
@@ -100,6 +101,7 @@ alias pf='ps -f'
 #alias pt='ps uxwf'
 alias tree='tree -Csu'
 
+alias ipy='ipython'
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
 alias tf='tldr find'
@@ -193,9 +195,7 @@ alias -g X='| xargs'
 
 # git
 # alias gl="git pull"
-alias glm='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
 alias glc="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glpg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 # draw back a `git push`  or a `git commit`
 alias gdp="git push -f origin HEAD^:master"
 alias gdc="git reset --soft HEAD^"

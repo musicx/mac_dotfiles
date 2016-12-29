@@ -1410,6 +1410,8 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '⮁'
 
+" enable/disable tmuxline integration >
+let g:airline#extensions#tmuxline#enabled = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => rainbow csv settings
