@@ -15,7 +15,7 @@ export GOPATH=/Users/yijiliu/.go
 export ACCESS_ID=HEHOg63XxQzeALUi
 export ACCESS_KEY=9fp7eVvMELXX67eY9vFqlY16o2ycS6
 # 搬homebrew源
-export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export HOMEBREW_GITHUB_API_TOKEN=41956570e882903dadb4d10eac4d613035c70bd6
 # software env settings
 #export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
