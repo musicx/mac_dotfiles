@@ -141,6 +141,9 @@ set fileencodings=utf-8,bg18030,gbk,big5
 " fast change fileencode and fileformat to unix/utf8
 nmap <leader>8 :set ff=unix fenc=utf-8<cr>
 
+" set to not break the line with textwidth
+set formatoptions=croql
+
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
@@ -1018,6 +1021,17 @@ au FileType python setlocal tabstop=4
 
 "au BufNewFile,BufRead *.jinja set syntax=htmljinja
 "au BufNewFile,BufRead *.mako set ft=mako
+
+" Auto add head info
+" .py file into add header
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+    normal x
+endf
+autocmd bufnewfile *.py call HeaderPython()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""
