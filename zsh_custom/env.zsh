@@ -25,7 +25,7 @@ export HOMEBREW_GITHUB_API_TOKEN=41956570e882903dadb4d10eac4d613035c70bd6
 export AUTOJUMP_IGNORE_CASE=1
 export CHEATCOLORS=true
 
-eval $(docker-machine env default)
+#eval $(docker-machine env default)
 
 # c3 servers
 #export JAVA_HOME=/usr/lib/jvm/jdk/

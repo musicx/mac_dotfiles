@@ -261,3 +261,6 @@ code () {
 	fi
 }
 
+use_conda () {
+    export PATH=/Users/mingxian/Conda3/bin:$PATH
+}

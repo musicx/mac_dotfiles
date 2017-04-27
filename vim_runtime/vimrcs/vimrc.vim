@@ -348,7 +348,7 @@ map ]W :tablast<cr>
 map [W :tabfirst<cr>
 
 " move the current window into new tab page
-nmap <C-T> <C-w>T
+nmap <leader>ct <C-w>T
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -1168,6 +1168,19 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 au FileType json setlocal equalprg=python\ -m\ json.tool\ 2>/dev/null
 
 
+"""""""""""""""""""""""""""""""
+" => shell section
+"""""""""""""""""""""""""""""""
+" insert header line for new shell file
+function HeaderBash()
+    call setline(1, "#!/usr/bin/env bash")
+    normal G
+    normal o
+    normal x
+endf
+autocmd bufnewfile *.sh call HeaderBash()
+
+
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
@@ -1244,14 +1257,14 @@ let g:yankring_window_increment = 50
 " => CTRL-P
 """"""""""""""""""""""""""""""
 " allow the ctrlp to start at the folder of current file unless cwd is ancester of current file
-let g:ctrlp_working_path_mode = 'a'
+"let g:ctrlp_working_path_mode = 'a'
 
 " directory for cache files
 let g:ctrlp_cache_dir = s:vim_cache . '/ctrlp_cache'
 
 let g:ctrlp_map = '<C-f>'
 nmap <C-b> :CtrlPBuffer<cr>
-nmap <C-m> :CtrlPMRU<cr>
+nmap <C-t> :CtrlPMRU<cr>
 nmap <leader>fh :CtrlP<space>~<cr>
 nmap <leader>fc :CtrlP<space><C-r>=expand('%:p:h')<cr>
 
@@ -1304,7 +1317,7 @@ map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 map <leader>nc :NERDTree<space><C-r>=expand('%:p:h')<cr><cr>
 cno <expr> $nt getcmdtype() = ':' ? NERDTree : '$nt'
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.swp$', '\.swo$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.swp$', '\.swo$', '\.git$', '\.hg', '\.svn', '\.bzr']
 "let NERDTreeShowHidden = 1
 let NERDTreeShowBookmarks = 1
 
@@ -1457,6 +1470,15 @@ let g:syntastic_html_tidy_ignore_errors = [" proprietary attribute \"ng-"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
+
+" shortcut for syntastic check
+map <leader>sy :SyntasticToggleMode<CR> :SyntasticCheck<CR>
+
+" Ignore warnings about newlines trailing.
+let g:syntastic_quiet_messages = { 'regex': ['line too long'] }
+    "\'trailing-newlines', 'invalid-name',
+    "\'too-many-lines', 'too-many-instance-attributes', 'too-many-public-methods',
+    "\'too-many-locals', 'too-many-branches'] }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
