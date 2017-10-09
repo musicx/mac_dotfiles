@@ -17,7 +17,7 @@ brew tap homebrew/versions
 
 brew install wget
 
-brew install vim --override-system-vi
+#brew install vim --override-system-vi
 brew install macvim --override-system-vim --custom-system-icons
 brew install make
 brew install nano
@@ -46,7 +46,7 @@ brew install gnu-which --with-default-names
 brew install gnutls --with-default-names
 brew install grep --with-default-names
 brew install gzip
-brew install screen
+#brew install screen
 brew install watch
 brew install wdiff --with-gettext
 brew install htop-osx
@@ -57,7 +57,7 @@ brew install automake
 brew install gcc --without-multilib
 brew install boost --with-python
 brew install clang-omp
-brew install vowpal-wabbit
+#brew install vowpal-wabbit
 
 brew install sbt
 brew install scala
@@ -70,9 +70,9 @@ brew install pyqt
 brew install ag
 
 brew install gdb
-brew install gpatch
-brew install m4
-brew install file-formula
-brew install hadoop
-brew install hbase
-brew install hive
+#brew install gpatch
+#brew install m4
+#brew install file-formula
+#brew install hadoop
+#brew install hbase
+#brew install hive

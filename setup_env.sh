@@ -21,3 +21,4 @@ ln -s ~/.dotfiles/tmux.conf .tmux.conf
 mv ~/.ssh ~/.ssh.bak
 ln -s ~/.dotfiles/ssh .ssh
 # wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O .dotfiles/dir_colors
+ln -s ~/.dotfiles/dir_colors .dir_colors

@@ -8,7 +8,7 @@
 export JAVA_HOME=$(/usr/libexec/java_home)
 # go env setting
 export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=/Users/yijiliu/.go
+export GOPATH=$HOME/.go
 #launchctl setenv GOROOT $GOROOT
 #launchctl setenv GOPATH $GOPATH
 # odps access info
@@ -24,6 +24,7 @@ export HOMEBREW_GITHUB_API_TOKEN=41956570e882903dadb4d10eac4d613035c70bd6
 #export PYLEARN2_DATA_PATH=$HOME/Work/Python/PyLearn2/data
 export AUTOJUMP_IGNORE_CASE=1
 export CHEATCOLORS=true
+export PYENV=$HOME/Work/Python/virtual
 
 #eval $(docker-machine env default)
 

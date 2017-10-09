@@ -38,6 +38,8 @@ Plugin 'panozzaj/vim-autocorrect'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chrisbra/NrrwRgn'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-expand-region'
 
 "--------------
 " Code Reading

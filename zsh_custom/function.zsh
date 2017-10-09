@@ -251,7 +251,7 @@ function psu {
 }
 
 # visual studio code. a la `subl`
-code () {
+function code {
 	if [[ $# = 0 ]]
 	then
 		open -a "Visual Studio Code"
@@ -261,6 +261,6 @@ code () {
 	fi
 }
 
-use_conda () {
+function use_conda {
     export PATH=/Users/mingxian/Conda3/bin:$PATH
 }

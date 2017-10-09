@@ -52,7 +52,7 @@ alias h=head
 alias t='tail -f'
 alias c='pygmentize -O style=monokai -f console256 -g'
 
-alias ls="${aliases[ls]:-ls} -hF --group-directories-first"
+alias ls="${aliases[ls]:-ls} -hF --group-directories-first --color=auto"
 alias l='ls -A'           # Lists in one column, hidden files.
 alias ll='ls -l'          # Lists human readable sizes.
 alias lr='ll -tR'         # Lists human readable sizes, recursively.
@@ -106,6 +106,8 @@ alias py='python2'
 alias py3='python3'
 alias ipy='ipython'
 alias ipy3='ipython3'
+alias pip='pip2'
+alias use_conda='export PATH=$HOME/Conda3/bin:$PATH'
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
 alias tf='tldr find'
