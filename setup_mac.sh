@@ -11,14 +11,14 @@ brew update
 
 brew install bash zsh tmux
 
-brew tap homebrew/dupes
-brew tap homebrew/science
-brew tap homebrew/versions
+#brew tap homebrew/dupes
+#brew tap homebrew/science
+#brew tap homebrew/versions
 
 brew install wget
 
 #brew install vim --override-system-vi
-brew install macvim --override-system-vim --custom-system-icons
+#brew install macvim --override-system-vim --custom-system-icons
 brew install make
 brew install nano
 
@@ -28,6 +28,7 @@ brew install less
 brew install openssh --with-brewed-openssl
 #brew install perl518   # must run "brew tap homebrew/versions" first!
 brew install python --with-brewed-openssl
+brew install python3 --with-brewed-openssl
 brew install rsync
 brew install svn
 brew install unzip
@@ -64,8 +65,9 @@ brew install scala
 brew install apache-spark
 brew install go
 brew install node
-brew install mongodb
-brew install postgresql
+brew install maven
+#brew install mongodb
+#brew install postgresql
 brew install pyqt
 brew install ag
 

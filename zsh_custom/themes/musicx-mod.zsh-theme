@@ -17,7 +17,7 @@ function check_user_prompt_info() {
     else
         mx_box_name="%{$fg[blue]%}$(box_name)%{$reset_color%} "
     fi
-    if [[ "$USER" != "mingxian" ]]; then
+    if [[ "$USER" != "musicx" ]]; then
         if [[ "$USER" == "root" ]]; then 
             echo "%{$fg_bold[red]%}%n%{$reset_color%} $mx_box_name"
         else

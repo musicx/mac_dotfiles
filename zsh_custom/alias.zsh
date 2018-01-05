@@ -107,7 +107,6 @@ alias py3='python3'
 alias ipy='ipython'
 alias ipy3='ipython3'
 alias pip='pip2'
-alias use_conda='export PATH=$HOME/Conda3/bin:$PATH'
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
 alias tf='tldr find'
@@ -119,10 +118,6 @@ alias sf='http_proxy=127.0.0.1:$SSH_DPORT https_proxy=127.0.0.1:$SSH_DPORT'
 
 alias r='rlogin'
 alias ppath='echo -e ${PATH//:/\\n}'
-
-alias mdplus='open ~/Work/Languages/js/packages/markdown-plus/index.zh_CN.html'
-alias mdses='(export PORT=5000 && node ~/Work/Languages/js/packages/stackedit/server.js) &'
-alias mdse='open -a "Safari" "http://localhost:5000/"'
 
 #alias print='/usr/bin/lp -o nobanner -d $LPDEST' 
 #alias pjet='enscript -h -G -fCourier9 -d $LPDEST'
