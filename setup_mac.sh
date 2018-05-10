@@ -58,17 +58,15 @@ brew install automake
 brew install gcc --without-multilib
 brew install boost --with-python
 brew install clang-omp
-#brew install vowpal-wabbit
 
 brew install sbt
 brew install scala
-brew install apache-spark
 brew install go
-brew install node
 brew install maven
 #brew install mongodb
 #brew install postgresql
-brew install pyqt
+#brew install pyqt
+#brew install node
 brew install ag
 
 brew install gdb
@@ -78,3 +76,4 @@ brew install gdb
 #brew install hadoop
 #brew install hbase
 #brew install hive
+#brew install apache-spark

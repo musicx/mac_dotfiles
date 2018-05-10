@@ -113,7 +113,7 @@ alias tf='tldr find'
 alias tu='tldr update'
 alias hfs='hadoop fs'
 
-export SSH_DPORT=8136
+export SSH_DPORT=1087
 alias sf='http_proxy=127.0.0.1:$SSH_DPORT https_proxy=127.0.0.1:$SSH_DPORT'
 
 alias r='rlogin'
@@ -243,10 +243,10 @@ fi
 # unalias scp
 #alias scpsas1='scp -P 8011'
 
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
-    --cache=$HOME/.npm/.cache/cnpm \
-    --disturl=https://npm.taobao.org/dist \
-    --userconfig=$HOME/.cnpmrc"
+#alias cnpm="npm --registry=https://registry.npm.taobao.org \
+    #--cache=$HOME/.npm/.cache/cnpm \
+    #--disturl=https://npm.taobao.org/dist \
+    #--userconfig=$HOME/.cnpmrc"
 
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
