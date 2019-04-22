@@ -8,6 +8,7 @@
 #export C_INCLUDE_PATH=/usr/local/opt/curl/include
 #export CPLUS_INCLUDE_PATH=/usr/local/opt/curl/include
 export JAVA_HOME=$(/usr/libexec/java_home --version 1.8)
+export SPARK_HOME=$HOME/Code/Scala/ali/spark-2.3.0-odps0.30.0
 
 alias mdplus='open ~/Work/Languages/js/packages/markdown-plus/index.zh_CN.html'
 alias mdses='(export PORT=5000 && node ~/Work/Languages/js/packages/stackedit/server.js) &'

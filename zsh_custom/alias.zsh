@@ -102,11 +102,12 @@ alias pf='ps -f'
 #alias pt='ps uxwf'
 alias tree='tree -Csu'
 
-alias py='python2'
+alias py='python3'
+alias py2='python2'
 alias py3='python3'
 alias ipy='ipython'
 alias ipy3='ipython3'
-alias pip='pip2'
+alias pip='pip3'
 alias jqt='jupyter qtconsole &'
 alias jnt='jupyter notebook &'
 alias tf='tldr find'
@@ -234,11 +235,6 @@ if is-at-least 4.2.0; then
   alias -s tar.gz="echo "
   alias -s ace="unace l"
 fi
-
-# out of RAE
-#export BASTION=phx01seh01.phx.paypal.com
-#alias sshtunnel='ssh -N -f -L 8010:horton-cli.vip.lvs.paypal.com:22 -g yijiliu@$BASTION'
-#alias sshsas1='ssh yijiliu@localhost -p 8011'
 
 # unalias scp
 #alias scpsas1='scp -P 8011'
