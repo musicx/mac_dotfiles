@@ -7,22 +7,22 @@
 # dev tools
 #export C_INCLUDE_PATH=/usr/local/opt/curl/include
 #export CPLUS_INCLUDE_PATH=/usr/local/opt/curl/include
-export JAVA_HOME=$(/usr/libexec/java_home --version 1.8)
-export SPARK_HOME=$HOME/Code/Scala/ali/spark-2.3.0-odps0.30.0
+#export JAVA_HOME=$(/usr/libexec/java_home --version 1.8)
+#export SPARK_HOME=$HOME/Code/Scala/ali/spark-2.3.0-odps0.30.0
 
-alias mdplus='open ~/Work/Languages/js/packages/markdown-plus/index.zh_CN.html'
-alias mdses='(export PORT=5000 && node ~/Work/Languages/js/packages/stackedit/server.js) &'
-alias mdse='open -a "Safari" "http://localhost:5000/"'
+#alias mdplus='open ~/Work/Languages/js/packages/markdown-plus/index.zh_CN.html'
+#alias mdses='(export PORT=5000 && node ~/Work/Languages/js/packages/stackedit/server.js) &'
+#alias mdse='open -a "Safari" "http://localhost:5000/"'
 
 
 # go env setting
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/.go
+#export GOROOT=/usr/local/opt/go/libexec
+#export GOPATH=$HOME/.go
 #launchctl setenv GOROOT $GOROOT
 #launchctl setenv GOPATH $GOPATH
 
 # 搬homebrew源
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 #export HOMEBREW_GITHUB_API_TOKEN=41956570e882903dadb4d10eac4d613035c70bd6
 
 # software env settings
@@ -35,7 +35,8 @@ export CHEATCOLORS=true
 
 # Python
 export PYTHONIOENCODING="utf8"
-export PYENV=$HOME/Code/Python/virtual
+#export PYENV=$HOME/Code/Python/virtual
+export PATH=$HOME/opt/anaconda3/bin:$PATH
 
 #eval $(docker-machine env default)
 

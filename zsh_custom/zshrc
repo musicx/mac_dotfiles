@@ -49,14 +49,24 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump brew brew-cask colored-man colorize compleat dircycle extract fasd git git-extras gradle history-substring-search jsontools jump mvn osx pip python rsync sbt scala sublime systemadmin thefuck zsh-navigation-tools zsh-syntax-highlighting)
+plugins=(autojump colored-man colorize compleat dircycle extract fasd git git-extras gradle history-substring-search jsontools jump mvn osx pip python rsync sbt scala sublime systemadmin thefuck zsh-navigation-tools zsh-syntax-highlighting)
 
 # User configuration
-
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:/usr/local/opt/go/libexec/bin"
-export PATH=$HOME/.dotfiles/bin:$HOME/bin:$PATH
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/ed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-which/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/go/libexec/bin"
+export PATH="$HOME/.dotfiles/bin:$HOME/bin:$PATH:$HOME/Library/Python/3.8/bin"
+export PATH="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH"
+export GUILE_TLS_CERTIFICATE_DIRECTORY=/opt/homebrew/etc/gnutls/
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:/opt/homebrew/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 # Browser
 if [[ "$OSTYPE" == darwin* ]]; then
